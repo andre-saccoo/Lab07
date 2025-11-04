@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 '''
     DTO (Data Transfer Object) dell'entità Museo
+    dataclass per creare in automatico l'oggetto museo
 '''
 
 @dataclass()
@@ -9,7 +10,6 @@ class Museo:
     id: int
     nome: str
     tipologia: str
-
     def __eq__(self, other):
         return isinstance(other, Museo) and self.id == other.id
 
