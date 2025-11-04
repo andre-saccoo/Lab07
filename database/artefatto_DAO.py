@@ -29,9 +29,55 @@ class ArtefattoDAO:
             return risultati
 
     @staticmethod
-    def artidacts_for_museum():
-        pass
-    @staticmethod
+    def artidacts_for_museum(museum):
+        risultati = []
+        cnx = ConnessioneDB.get_connection()
+        if cnx in None:
+            print("CONNESSIONE AL DATABASE FALLITA")
+            return None
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM artefatto WHERE id_museo = %s",(museum,)) #per fargli capire che è una riga
+            for row in cursor:
+                artefatto=Artefatto(row["id"],row["nome"],row["tipologia"],row["epoca"], row["id_museo"])
+                risultati.append(artefatto)
+            cursor.close()
+            cnx.close()
+            return risultati
 
-    def artefatto():
-        pass
+    @staticmethod
+    def artidacts_for_era(epoca):
+        risultati = []
+        cnx = ConnessioneDB.get_connection()
+        if cnx in None:
+            print("CONNESSIONE AL DATABASE FALLITA")
+            return None
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM artefatto WHERE epoca = %s",(epoca,))
+            for row in cursor:
+                artefatto= Artefatto (row["id"],row["nome"],row["tipologia"],row["epoca"],row["id_museo"])
+                risultati.append(artefatto)
+            cursor.close()
+            cnx.close()
+            return risultati
+
+    @staticmethod
+    def read_artifacts_for_museum_and_era (museum, era):
+        risultati = []
+        cnx = ConnessioneDB.get_connection()
+        if cnx in None:
+            print("CONNESSIONE AL DATABASE FALLITA")
+            return None
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM artefatto WHERE id_museo = %s AND epoca = %s",(museum,era))
+            for row in cursor:
+                artefatto = Artefatto(row["id"], row["nome"], row["tipologia"], row["epoca"], row["id_museo"])
+                risultati.append(artefatto)
+            cursor.close()
+            cnx.close()
+            return risultati
+
+
+
