@@ -28,26 +28,3 @@ class MuseoDAO:
             cursor.close()
             cnx.close()
             return risultati
-
-    @staticmethod
-    def read_artifacts():
-        print ( " lettura artefatti da database utilizzando la query" )
-        risultati = []
-        cnx = ConnessioneDB.get_connection()
-        if cnx in None:
-            print("CONNESSIONE AL DATABASE FALLITA")
-            return None
-        else:
-            cursor = cnx.cursor(dictionary=True)
-            cursor.execute("SELECT * FROM artefatto")
-            for row in cursor:
-                artefatto=Artefatto(row["id"],row["nome"],row["tipologia"], row["epoca"],row["id_museo"])
-                risultati.append(artefatto)
-            cursor.close()
-            cnx.close()
-            return risultati
-
-
-
-
-
