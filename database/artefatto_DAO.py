@@ -32,3 +32,6 @@ class ArtefattoDAO:
     def artidacts_for_museum():
         pass
     @staticmethod
+
+    def artefatto():
+        pass
