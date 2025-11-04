@@ -27,3 +27,7 @@ class ArtefattoDAO:
             cursor.close()
             cnx.close()
             return risultati
+
+    @staticmethod
+    def artidacts_for_museum():
+        pass
