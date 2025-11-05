@@ -1,5 +1,7 @@
+from tkinter.constants import CENTER
 import flet as ft
 from UI.alert import AlertManager
+
 
 '''
     VIEW:
@@ -36,10 +38,23 @@ class View:
         self.txt_titolo = ft.Text(value="Musei di Torino", size=38, weight=ft.FontWeight.BOLD)
 
         # --- Sezione 2: Filtraggio ---
-        # TODO
+
+        '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
+        self.dropdown_museo = ft.Dropdown(label="Museo",
+                                          options=[ft.dropdown.Option("id", "nome") for item in model.Model._museo_dao], width=200,
+                                          hint_text="seleziona il museo")  # , on_change = print("ciao")
+        self.dropdown_epoca = ft.Dropdown(label="Epoca",
+                                          options=[ft.dropdown.Option("1", "*"), ft.dropdown.Option("2", "**"),
+                                                   ft.dropdown.Option("5", "*****")], width=200,
+                                          hint_text="seleziona il museo")
+        self.row = ft.Row(controls=[self.dropdown_museo, self.dropdown_epoca], alignment=ft.MainAxisAlignment.CENTER)
 
         # Sezione 3: Artefatti
-        # TODO
+
+        '''collegare il bottone alla funzione di ricerca'''
+        self.button= ft.ElevatedButton (text="Mostra Artefatti",width= 200, on_click= print("fatto"))
+
+        self.risultati= ft.ListView
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -53,10 +68,14 @@ class View:
             ft.Divider(),
 
             # Sezione 2: Filtraggio
-            # TODO
+            self.row,
+            ft.Divider(),
 
             # Sezione 3: Artefatti
-            # TODO
+            self.button,
+
+            #lista risultati da completare
+            #self.risultati
         )
 
         self.page.scroll = "adaptive"

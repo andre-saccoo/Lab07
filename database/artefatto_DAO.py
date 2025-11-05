@@ -12,10 +12,10 @@ class ArtefattoDAO:
 
     @staticmethod
     def read_artifacts():
-        print(" lettura artefatti da database utilizzando la query")
+        print(" lettura artefatti da database utilizzando la query eseguita")
         risultati = []
         cnx = ConnessioneDB.get_connection()
-        if cnx in None:
+        if cnx is None:
             print("CONNESSIONE AL DATABASE FALLITA")
             return None
         else:
@@ -24,6 +24,7 @@ class ArtefattoDAO:
             for row in cursor:
                 artefatto = Artefatto(row["id"], row["nome"], row["tipologia"], row["epoca"], row["id_museo"])
                 risultati.append(artefatto)
+                print(artefatto.id, artefatto.nome)
             cursor.close()
             cnx.close()
             return risultati
@@ -32,7 +33,7 @@ class ArtefattoDAO:
     def artidacts_for_museum(museum):
         risultati = []
         cnx = ConnessioneDB.get_connection()
-        if cnx in None:
+        if cnx is None:
             print("CONNESSIONE AL DATABASE FALLITA")
             return None
         else:
@@ -49,7 +50,7 @@ class ArtefattoDAO:
     def artidacts_for_era(epoca):
         risultati = []
         cnx = ConnessioneDB.get_connection()
-        if cnx in None:
+        if cnx is None:
             print("CONNESSIONE AL DATABASE FALLITA")
             return None
         else:
@@ -66,7 +67,7 @@ class ArtefattoDAO:
     def read_artifacts_for_museum_and_era (museum, era):
         risultati = []
         cnx = ConnessioneDB.get_connection()
-        if cnx in None:
+        if cnx is None:
             print("CONNESSIONE AL DATABASE FALLITA")
             return None
         else:
