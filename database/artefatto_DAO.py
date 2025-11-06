@@ -50,7 +50,7 @@ class ArtefattoDAO:
 
     #
     @staticmethod
-    def artidacts_for_era(epoca):
+    def artifacts_for_era(epoca):
         risultati = []
         cnx = ConnessioneDB.get_connection()
         if cnx is None:
