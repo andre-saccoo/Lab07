@@ -18,7 +18,7 @@ class Controller:
         self.epoca_selezionata = None
 
     # POPOLA DROPDOWN
-    # TODO
+    # TODO inserire le cose da passare alla drop down
 
     # CALLBACKS DROPDOWN
     # TODO

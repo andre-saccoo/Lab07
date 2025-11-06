@@ -2,8 +2,8 @@ from database.DB_connect import ConnessioneDB
 from model.artefattoDTO import Artefatto
 
 """
-    ARTEFATTO DAO
-    Gestisce le operazioni di accesso al database relative agli artefatti (Effettua le Query).
+    ARTEFATTO DAO è Classe che si occupa dell'interazione con il database secondo il pattern DAO, gestisce le operazioni di accesso al database relative ai musei (Effettua le Query).
+    Leggo le informazioni relative ai musei dal db, le trasformo in oggetti DTO e li appendo alla lista risultati
 """
 
 class ArtefattoDAO:
