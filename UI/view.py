@@ -1,7 +1,7 @@
 from tkinter.constants import CENTER
 import flet as ft
 from UI.alert import AlertManager
-
+from model.Model import Model
 
 '''
     VIEW:
@@ -16,6 +16,9 @@ class View:
         self.page.title = "Lab07"
         self.page.horizontal_alignment = "center"
         self.page.theme_mode = ft.ThemeMode.DARK
+        self.model= Model()
+        self.lista_epoche=self.model.get_epoche()
+
 
         # Alert
         self.alert = AlertManager(page)
@@ -40,14 +43,13 @@ class View:
         # --- Sezione 2: Filtraggio ---
 
         '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
-        self.dropdown_museo = ft.Dropdown(label="Museo",
-                                          options=[ft.dropdown.Option("id", "nome") for item in model.Model._museo_dao], width=200,
-                                          hint_text="seleziona il museo")  # , on_change = print("ciao")
+       # self.dropdown_museo = ft.Dropdown(label="Museo",
+        #                                  options=[ft.dropdown.Option("id", "nome") for item in model.Model._museo_dao], width=200,
+         #                                 hint_text="seleziona il museo")  # , on_change = print("ciao")
         self.dropdown_epoca = ft.Dropdown(label="Epoca",
-                                          options=[ft.dropdown.Option("1", "*"), ft.dropdown.Option("2", "**"),
-                                                   ft.dropdown.Option("5", "*****")], width=200,
+                                          options=[ft.dropdown.Option(e) for e in self.lista_epoche], width=200,
                                           hint_text="seleziona il museo")
-        self.row = ft.Row(controls=[self.dropdown_museo, self.dropdown_epoca], alignment=ft.MainAxisAlignment.CENTER)
+        self.row = ft.Row(controls=[self.dropdown_epoca], alignment=ft.MainAxisAlignment.CENTER) #self.dropdown_museo,
 
         # Sezione 3: Artefatti
 
@@ -70,6 +72,7 @@ class View:
             # Sezione 2: Filtraggio
             self.row,
             ft.Divider(),
+
 
             # Sezione 3: Artefatti
             self.button,

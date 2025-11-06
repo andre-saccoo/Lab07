@@ -32,7 +32,7 @@ class ArtefattoDAO:
 
     #RICHIESTA 2: query che si occupa della lettura degli artefatti presenti in uno specifico museo
     @staticmethod
-    def artidacts_for_museum(museum):
+    def artifacts_for_museum(museum):
         risultati = []
         cnx = ConnessioneDB.get_connection()
         if cnx is None:
@@ -82,6 +82,24 @@ class ArtefattoDAO:
             cursor.close()
             cnx.close()
             return risultati
+
+    @staticmethod
+    def read_era():
+        risultati = []
+        cnx = ConnessioneDB.get_connection()
+        if cnx is None:
+            print("CONNESSIONE AL DATABASE FALLITA")
+            return None
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            cursor.execute("SELECT DISTINCT epoca FROM artefatto")
+            for row in cursor:
+                era= row["epoca"]
+                risultati.append(era)
+            cursor.close()
+            cnx.close()
+            return risultati
+
 
 
 

@@ -1,6 +1,6 @@
 import flet as ft
 from UI.view import View
-from model.model import Model
+from model.Model import Model
 
 '''
     CONTROLLER:

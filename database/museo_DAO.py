@@ -2,8 +2,8 @@ from database.DB_connect import ConnessioneDB
 from model.museoDTO import Museo
 
 """
-    Museo DAO è Classe che si occupa dell'interazione con il database secondo il pattern DAO, gestisce le operazioni di accesso al database relative ai musei (Effettua le Query).
-    Leggo le informazioni relative ai musei dal db, le trasformo in oggetti DTO e li appendo alla lista risultati
+Museo DAO è Classe che si occupa dell'interazione con il database secondo il pattern DAO, gestisce le operazioni di accesso al database relative ai musei (Effettua le Query).
+Leggo le informazioni relative ai musei dal db, e le preparo per inserirle nella drop list
 """
 
 class MuseoDAO:
@@ -15,7 +15,7 @@ class MuseoDAO:
         print ( " lettura musei da database utilizzando la query" )
         risultati = []
         cnx = ConnessioneDB.get_connection()
-        if cnx in None:
+        if cnx is None:
             print ("CONNESSIONE AL DATABASE FALLITA")
             return None
         else:
