@@ -10,9 +10,10 @@ class ArtefattoDAO:
     def __init__(self):
         pass
 
+    #RICHIESTA 1: query che si occupa della lettura di tutti gli artefatti
     @staticmethod
     def read_artifacts():
-        print(" lettura artefatti da database utilizzando la query eseguita")
+        print(" lettura tutti artefatti da database utilizzando la query eseguita")
         risultati = []
         cnx = ConnessioneDB.get_connection()
         if cnx is None:
@@ -29,6 +30,7 @@ class ArtefattoDAO:
             cnx.close()
             return risultati
 
+    #RICHIESTA 2: query che si occupa della lettura degli artefatti presenti in uno specifico museo
     @staticmethod
     def artidacts_for_museum(museum):
         risultati = []
@@ -46,6 +48,7 @@ class ArtefattoDAO:
             cnx.close()
             return risultati
 
+    #
     @staticmethod
     def artidacts_for_era(epoca):
         risultati = []
