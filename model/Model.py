@@ -16,10 +16,23 @@ class Model:
         self.roman_to_int = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9, 'X': 10, 'XI': 11, 'XII': 12, 'XIII': 13, 'XIV': 14, 'XV': 15,  'XVI': 16, 'XVII': 17, 'XVIII': 18, 'XIX': 19, 'XX': 20, 'XXI': 21, 'XXII': 22, 'XXIII': 23, 'XXIV': 24, 'XXV': 25, 'XXVI': 26, 'XXVII': 27}
 
     # --- ARTEFATTI ---
+    # a seconda dei valori passati alla funzione eseguo la query corrispondente
     def get_artefatti_filtrati(self, museo:str, epoca:str):
         """Restituisce la lista di tutti gli artefatti filtrati per museo e/o epoca
         (filtri opzionali)."""
         # TODO
+        if epoca == None and museo == None:
+            lista_artefatti=ArtefattoDAO.read_artifacts()
+            return lista_artefatti
+        elif museo==None and epoca != None:
+            lista_artefatti_per_epoca = ArtefattoDAO.artifacts_for_era(epoca)
+            return lista_artefatti_per_epoca
+        elif epoca ==None and museo != None:
+            lista_artefatti_per_museo=ArtefattoDAO.artifacts_for_museum(museo)
+            return lista_artefatti_per_museo
+        else:
+            lista_artefatti_per_museo_e_per_epoca=ArtefattoDAO.read_artifacts_for_museum_and_era(museo,epoca)
+            return lista_artefatti_per_museo_e_per_epoca
 
     # da passare alla droplist
     def get_epoche(self):
@@ -34,8 +47,8 @@ class Model:
             # Ordine: prima a.C. (0), poi d.C. (1)
             # Per a.C. mettiamo valore negativo per ordine decrescente
             if is_ac:
-                return (0, -valore)
-            else:
+                return (0, -valore) #restituiamo una tupla di valori: 0 se a.C 1 se d.C
+            else:                   #e il valore per permettere alla funzione sorte di ordinare correttamente
                 return (1, valore)
         self.epoche_ordinate = sorted(lista_epoche, key=key) # utilizzo per ordinare la funzione definita sopra
         return self.epoche_ordinate
