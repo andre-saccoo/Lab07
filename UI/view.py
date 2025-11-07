@@ -49,6 +49,7 @@ class View:
 
 
         #inserire la provenienza dei dati
+        #   DA COMPLETARE
         self.dd_Epoca = ft.Dropdown(label="Epoca", options=[], width=200,
                                           hint_text="seleziona il museo")
         self.row = ft.Row(controls=[self.dd_Musei, self.dd_Epoca], alignment=ft.MainAxisAlignment.CENTER)

@@ -9,7 +9,6 @@ from model.artefattoDTO import Artefatto
 class ArtefattoDAO:
     def __init__(self):
         pass
-
     #RICHIESTA 1: query che si occupa della lettura di tutti gli artefatti
     @staticmethod
     def read_artifacts():
@@ -96,10 +95,32 @@ class ArtefattoDAO:
             for row in cursor:
                 era= row["epoca"]
                 risultati.append(era)
-            cursor.close()
-            cnx.close()
-            return risultati
 
+        def key(epoca):
+            # creo un dizionario per ordinare la lista di epoche cercando di inserire prima le epoche a.C in ordine decrescente e le altre in ordine crescente
+            roman_to_int = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9,
+                                 'X': 10,
+                                 'XI': 11, 'XII': 12, 'XIII': 13, 'XIV': 14, 'XV': 15, 'XVI': 16, 'XVII': 17,
+                                 'XVIII': 18,
+                                 'XIX': 19, 'XX': 20, 'XXI': 21, 'XXII': 22, 'XXIII': 23, 'XXIV': 24, 'XXV': 25,
+                                 'XXVI': 26,
+                                 'XXVII': 27}
+            parti = epoca.split()  # ogni epoca è formata da tre parti: NUMERO ROMANO-> parti[0],
+            numero_romano = parti[0]  # che attraverso il dizionario definito sopra
+            valore = roman_to_int[numero_romano]  # gli diamo la chiave in numero romano chiedendo il valore
+            is_ac = 'a.C.' in epoca  # se l'epoca è a.C. va ordinata al contrario
+                # Ordine: prima a.C. (0), poi d.C. (1)
+                # Per a.C. mettiamo valore negativo per ordine decrescente
+            if is_ac:
+                return (0, -valore)  # restituiamo una tupla di valori: 0 se a.C 1 se d.C
+            else:  # e il valore per permettere alla funzione sorte di ordinare correttamente
+                return (1, valore)
+
+        epoche_ordinate = sorted(risultati, key=key)
+        epoche_ordinate.insert(0,"Qualunque")
+        cursor.close()
+        cnx.close()
+        return epoche_ordinate
 
 
 
