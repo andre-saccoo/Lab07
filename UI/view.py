@@ -44,14 +44,13 @@ class View:
         # --- Sezione 2: Filtraggio ---
 
         '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
-        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.lista_epoche, '''on_change=FUNZIONE CHE PREPARA LA STAMPA''', width=200,hint_text="seleziona il museo")
+        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.Popola_drop_down_museo(), on_change=controller.Aggiorna_musei(), width=200,hint_text="seleziona il museo")
 
 
 
         #inserire la provenienza dei dati
         #   DA COMPLETARE
-        self.dd_Epoca = ft.Dropdown(label="Epoca", options=[], width=200,
-                                          hint_text="seleziona il museo")
+        self.dd_Epoca = ft.Dropdown(label="Epoca", options=controller.Popola_drop_down_epoche(), width=200, hint_text="seleziona l'epoca")
         self.row = ft.Row(controls=[self.dd_Musei, self.dd_Epoca], alignment=ft.MainAxisAlignment.CENTER)
 
         # Sezione 3: Artefatti

@@ -16,16 +16,14 @@ class Model:
     # --- ARTEFATTI ---
     # a seconda dei valori passati alla funzione eseguo la query corrispondente
     def get_artefatti_filtrati(self, museo:str, epoca:str):
-        """Restituisce la lista di tutti gli artefatti filtrati per museo e/o epoca
-        (filtri opzionali)."""
-        # TODO
-        if epoca == None and museo == None:
+        """Restituisce la lista di tutti gli artefatti filtrati per museo e/o epoca (filtri opzionali)."""
+        if dd_Epoca.value == 'Qualunque' and dd_museo == 'Qualunque':
             lista_artefatti=ArtefattoDAO.read_artifacts()
             return lista_artefatti
         elif museo==None and epoca != None:
             lista_artefatti_per_epoca = ArtefattoDAO.artifacts_for_era(epoca)
             return lista_artefatti_per_epoca
-        elif epoca ==None and museo != None:
+        elif epoca ==None and museo != 'Qualunque':
             lista_artefatti_per_museo=ArtefattoDAO.artifacts_for_museum(museo)
             return lista_artefatti_per_museo
         else:
@@ -44,7 +42,5 @@ class Model:
     def get_musei(self):
         lista_musei=MuseoDAO.read_museum()
         return lista_musei
-
-
 
 
