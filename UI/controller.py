@@ -20,8 +20,11 @@ class Controller:
     # POPOLA DROPDOWN
     # TODO inserire le cose da passare alla drop down
 
+    #[ft.dropdown.Option(e) for e in self.controller.lista_epoche] popolare le epoche
+
     # CALLBACKS DROPDOWN
     # TODO
 
     # AZIONE: MOSTRA ARTEFATTI
     # TODO
+

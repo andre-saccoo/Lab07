@@ -2,6 +2,7 @@ from tkinter.constants import CENTER
 import flet as ft
 from UI.alert import AlertManager
 from model.Model import Model
+from UI.controller import Controller
 
 '''
     VIEW:
@@ -43,13 +44,14 @@ class View:
         # --- Sezione 2: Filtraggio ---
 
         '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
-       # self.dropdown_museo = ft.Dropdown(label="Museo",
-        #                                  options=[ft.dropdown.Option("id", "nome") for item in model.Model._museo_dao], width=200,
-         #                                 hint_text="seleziona il museo")  # , on_change = print("ciao")
-        self.dropdown_epoca = ft.Dropdown(label="Epoca",
-                                          options=[ft.dropdown.Option(e) for e in self.lista_epoche], width=200,
+        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.lista_epoche, '''on_change=FUNZIONE CHE PREPARA LA STAMPA''', width=200,hint_text="seleziona il museo")
+
+
+
+        #inserire la provenienza dei dati
+        self.dd_Epoca = ft.Dropdown(label="Epoca", options=[], width=200,
                                           hint_text="seleziona il museo")
-        self.row = ft.Row(controls=[self.dropdown_epoca], alignment=ft.MainAxisAlignment.CENTER) #self.dropdown_museo,
+        self.row = ft.Row(controls=[self.dd_Musei, self.dd_Epoca], alignment=ft.MainAxisAlignment.CENTER)
 
         # Sezione 3: Artefatti
 
