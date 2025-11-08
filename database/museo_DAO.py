@@ -2,8 +2,11 @@ from database.DB_connect import ConnessioneDB
 from model.museoDTO import Museo
 
 """
-Museo DAO è Classe che si occupa dell'interazione con il database secondo il pattern DAO, gestisce le operazioni di accesso al database relative ai musei (Effettua le Query).
-Leggo le informazioni relative ai musei dal db, e le preparo per inserirle nella drop list
+MUSEO DAO
+ è Classe che si occupa dell'interazione con il database secondo il pattern DAO, 
+gestisce le operazioni di accesso al database relative ai musei, effettua la Query
+per la lettura dei musei, le trasforma in oggetti DTO e li appende alla lista
+ di dizionari dei risultati .
 """
 
 class MuseoDAO:

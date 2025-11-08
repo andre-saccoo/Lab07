@@ -4,7 +4,7 @@ from model.artefattoDTO import Artefatto
 """
 ARTEFATTO DAO 
 è una Classe che si occupa dell'interazione con il database secondo il pattern DAO,
- gestisce le operazioni di accesso al database relative ai musei, effettua le Query
+ gestisce le operazioni di accesso al database relative agli artefatti, effettua le Query
  per la lettura degli artefatti, le trasforma in oggetti DTO e li appende alla lista
  di dizionari dei risultati .
 """

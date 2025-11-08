@@ -3,6 +3,7 @@ from mysql.connector import errorcode
 import pathlib
 
 class ConnessioneDB:
+
     """
     Classe utilizzata per creare e gestire un pool di connessioni al database.
     Implementa un metodo di classe che funge da factory per fornire connessioni
