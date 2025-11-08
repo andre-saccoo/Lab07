@@ -20,8 +20,7 @@ class View:
         self.model= Model()
         self.lista_epoche=self.model.get_epoche()
 
-
-        # Alert
+        # Alert messaggi di errore
         self.alert = AlertManager(page)
 
         # Controller

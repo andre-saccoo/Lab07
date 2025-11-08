@@ -29,13 +29,14 @@ class Controller:
         lista_musei_dd=Model.get_musei()
         return lista_musei_dd
 
-'''
-    # CALLBACKS DROPDOWN
+
+    # CALLBACKS DROPDOWN da passargli il valore selezionato nelle dd
     def Aggiorna_musei(self,e):
-        self.museo_selezionato = e.c
+        self.museo_selezionato = view
         return self.museo_selezionato
 
     def Aggiorna_epoca(self):
+        self.epoca_selezionata = view.
         pass
 
     #[ft.dropdown.Option(e) for e in self.controller.lista_epoche] popolare le epoche
@@ -44,4 +45,8 @@ class Controller:
 
     # AZIONE: MOSTRA ARTEFATTI
     # TODO'''
+    def mostra_artefatti(self,e):
+        museo=self.museo_selezionato
+        epoca=self.epoca_selezionata
+        self.view.lis
 
