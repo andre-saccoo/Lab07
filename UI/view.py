@@ -1,8 +1,7 @@
 from tkinter.constants import CENTER
 import flet as ft
 from UI.alert import AlertManager
-from model.Model import Model
-from UI.controller import Controller
+#from UI.controller import Controller
 
 '''
     VIEW:
@@ -17,8 +16,6 @@ class View:
         self.page.title = "Lab07"
         self.page.horizontal_alignment = "center"
         self.page.theme_mode = ft.ThemeMode.DARK
-        self.model= Model()
-        self.lista_epoche=self.model.get_epoche()
 
         # Alert messaggi di errore
         self.alert = AlertManager(page)
@@ -40,23 +37,17 @@ class View:
         # --- Sezione 1: Intestazione ---
         self.txt_titolo = ft.Text(value="Musei di Torino", size=38, weight=ft.FontWeight.BOLD)
 
-        # --- Sezione 2: Filtraggio ---
+        # --- Sezione 2: Filtraggio GESIONE DROP DOWN---
 
         '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
-        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.Popola_drop_down_museo(), on_change=Controller.Aggiorna_musei(), width=200,hint_text="seleziona il museo")
-
-
-
-        #inserire la provenienza dei dati
-        #   DA COMPLETARE
-        self.dd_Epoca = ft.Dropdown(label="Epoca", options=Controller.Popola_drop_down_epoche(),on_change=Controller.Aggiorna_epoca(), width=200, hint_text="seleziona l'epoca")
+        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.Popola_drop_down_museo(), on_change=self.controller.Aggiorna_musei, width=200,hint_text="seleziona il museo")
+        self.dd_Epoca = ft.Dropdown(label="Epoca", options=self.controller.Popola_drop_down_epoche(),on_change=self.controller.Aggiorna_epoca, width=200, hint_text="seleziona l'epoca")
         self.row = ft.Row(controls=[self.dd_Musei, self.dd_Epoca], alignment=ft.MainAxisAlignment.CENTER)
 
         # Sezione 3: Artefatti
 
         '''collegare il bottone alla funzione di ricerca'''
-        self.button= ft.ElevatedButton (text="Mostra Artefatti",width= 200, on_click= print("fatto"))
-
+        self.button= ft.ElevatedButton (text="Mostra Artefatti",width= 200, on_click= self.controller.mostra_artefatti)
         self.risultati= ft.ListView
 
         # --- Toggle Tema ---
@@ -77,9 +68,7 @@ class View:
 
             # Sezione 3: Artefatti
             self.button,
-
-            #lista risultati da completare
-            #self.risultati
+            self.risultati(expand=True)
         )
 
         self.page.scroll = "adaptive"

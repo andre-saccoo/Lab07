@@ -4,9 +4,9 @@ from model.Model import Model
 from model.museoDTO import Museo
 
 '''
-    CONTROLLER:
-    - Funziona da intermediario tra MODELLO e VIEW
-    - Gestisce la logica del flusso dell'applicazione
+CONTROLLER:
+- Funziona da intermediario tra MODELLO e VIEW
+- Gestisce la logica del flusso dell'applicazione
 '''
 
 class Controller:
@@ -20,33 +20,35 @@ class Controller:
 
     # POPOLA DROPDOWN
     # TODO inserire le cose da passare alla drop down
-
+    # è necessario restituire oggetti option alla drop down
     def Popola_drop_down_epoche(self):
-        lista_epoche_dd=Model.get_epoche()
-        return lista_epoche_dd
+        lista_epoche_dd = self._model.get_epoche()
+        lista_opzioni = []  # creo lista vuota
+        for epoca in lista_epoche_dd:  # ciclo su tutte le epoche
+            lista_opzioni.append(ft.dropdown.Option(epoca))
+        return lista_opzioni  # ritorno la lista completa
 
     def Popola_drop_down_museo(self):
-        lista_musei_dd=Model.get_musei()
-        return lista_musei_dd
-
+        lista_musei_dd = self._model.get_musei()
+        lista_opzioni = []
+        for museo in lista_musei_dd:
+            lista_opzioni.append(ft.dropdown.Option(museo))
+        return lista_opzioni
 
     # CALLBACKS DROPDOWN da passargli il valore selezionato nelle dd
     def Aggiorna_musei(self,e):
-        self.museo_selezionato = view
+        self.museo_selezionato = self._view.dd_Musei.value
+        print(self.museo_selezionato)
         return self.museo_selezionato
 
     def Aggiorna_epoca(self):
-        self.epoca_selezionata = view.
-        pass
-
-    #[ft.dropdown.Option(e) for e in self.controller.lista_epoche] popolare le epoche
-
-
+        self.epoca_selezionata = self._view.dd_Epoca.value
+        return self.epoca_selezionata
 
     # AZIONE: MOSTRA ARTEFATTI
     # TODO'''
     def mostra_artefatti(self,e):
         museo=self.museo_selezionato
         epoca=self.epoca_selezionata
-        self.view.lis
-
+        self._model.get_artefatti_filtrati(museo,epoca)
+        return
