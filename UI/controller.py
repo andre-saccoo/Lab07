@@ -17,9 +17,8 @@ class Controller:
         self.museo_selezionato = 'Qualunque'
         self.epoca_selezionata = 'Qualunque'
 
-    # POPOLA DROPDOWN
-    # TODO inserire le cose da passare alla drop down
-    # è necessario restituire oggetti option alla drop down
+
+    '''funzioni per popolare le dropdown, è necessario restituire oggetti option alla drop down'''
     def Popola_drop_down_epoche(self):
         lista_epoche_dd = self._model.get_epoche()
         lista_opzioni = []  # creo lista vuota
@@ -34,7 +33,7 @@ class Controller:
             lista_opzioni.append(ft.dropdown.Option(museo))
         return lista_opzioni
 
-    # CALLBACKS DROPDOWN da passargli il valore selezionato nelle dd
+    '''CALLBACKS DROPDOWN da passargli il valore selezionato nelle dd'''
     def Aggiorna_musei(self,e):
         self.museo_selezionato = self._view.dd_Musei.value
         return str(self.museo_selezionato)
@@ -43,7 +42,7 @@ class Controller:
         self.epoca_selezionata = self._view.dd_Epoca.value
         return str(self.epoca_selezionata)
 
-    # AZIONE: MOSTRA ARTEFATTI
+    '''AZIONE: MOSTRA ARTEFATTI dopo aver selezionato i filtri dalla schermata flet'''
     def mostra_artefatti(self,e):
         self._view.risultati.controls.clear()
         museo=self.museo_selezionato
