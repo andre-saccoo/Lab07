@@ -29,7 +29,7 @@ class Controller:
         lista_musei_dd=Model.get_musei()
         return lista_musei_dd
 
-
+'''
     # CALLBACKS DROPDOWN
     def Aggiorna_musei(self,e):
         self.museo_selezionato = e.c
@@ -43,5 +43,5 @@ class Controller:
 
 
     # AZIONE: MOSTRA ARTEFATTI
-    # TODO
+    # TODO'''
 

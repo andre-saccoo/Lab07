@@ -24,6 +24,10 @@ class MuseoDAO:
             for row in cursor:
                 museo=Museo(row["id"],row["nome"],row["tipologia"])
                 risultati.append(museo)
+            risultati.insert(0,'Qualunque')
             cursor.close()
             cnx.close()
             return risultati
+
+lista=MuseoDAO.read_museum()
+print (lista)

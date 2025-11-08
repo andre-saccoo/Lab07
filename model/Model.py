@@ -2,10 +2,10 @@ from database.museo_DAO import MuseoDAO
 from database.artefatto_DAO import ArtefattoDAO
 
 '''
-    MODELLO: 
-    - Rappresenta la struttura dati
-    - Si occupa di gestire lo stato dell'applicazione
-    - Si occupa di interrogare il DAO (chiama i metodi di MuseoDAO e ArtefattoDAO)
+MODELLO: 
+- Rappresenta la struttura dati
+- Si occupa di gestire lo stato dell'applicazione
+- Si occupa di interrogare il DAO (chiama i metodi di MuseoDAO e ArtefattoDAO)
 '''
 
 class Model:
@@ -17,13 +17,13 @@ class Model:
     # a seconda dei valori passati alla funzione eseguo la query corrispondente
     def get_artefatti_filtrati(self, museo:str, epoca:str):
         """Restituisce la lista di tutti gli artefatti filtrati per museo e/o epoca (filtri opzionali)."""
-        if dd_Epoca.value == 'Qualunque' and dd_museo == 'Qualunque':
-            lista_artefatti=ArtefattoDAO.read_artifacts()
+        if museo == 'Qualunque' and epoca == 'Qualunque':
+            lista_artefatti=ArtefattoDAO.read_artifacts() #se entrambe le dropdown sono impostate su qualunque stampa tutti
             return lista_artefatti
-        elif museo==None and epoca != None:
+        elif museo=='Qualunque' and epoca != 'Qualunque':
             lista_artefatti_per_epoca = ArtefattoDAO.artifacts_for_era(epoca)
             return lista_artefatti_per_epoca
-        elif epoca ==None and museo != 'Qualunque':
+        elif museo != 'Qualunque' and epoca =='Qualunque':
             lista_artefatti_per_museo=ArtefattoDAO.artifacts_for_museum(museo)
             return lista_artefatti_per_museo
         else:
