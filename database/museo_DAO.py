@@ -11,8 +11,8 @@ class MuseoDAO:
         pass
 
     @staticmethod
-    def  read_museum(): #essendo static method non è necesario il self
-        print ( " lettura musei da database utilizzando la query" )
+    def  read_museum(): #essendo static method non è necessario il self
+        #print (" lettura musei da database utilizzando la query")
         risultati = []
         cnx = ConnessioneDB.get_connection()
         if cnx is None:
@@ -29,5 +29,3 @@ class MuseoDAO:
             cnx.close()
             return risultati
 
-lista=MuseoDAO.read_museum()
-print (lista)

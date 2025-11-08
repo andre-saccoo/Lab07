@@ -1,7 +1,6 @@
 import flet as ft
 from UI.view import View
 from model.Model import Model
-from model.museoDTO import Museo
 
 '''
 CONTROLLER:
@@ -15,8 +14,8 @@ class Controller:
         self._view = view
 
         # Variabili per memorizzare le selezioni correnti
-        self.museo_selezionato = None
-        self.epoca_selezionata = None
+        self.museo_selezionato = 'Qualunque'
+        self.epoca_selezionata = 'Qualunque'
 
     # POPOLA DROPDOWN
     # TODO inserire le cose da passare alla drop down
@@ -38,17 +37,23 @@ class Controller:
     # CALLBACKS DROPDOWN da passargli il valore selezionato nelle dd
     def Aggiorna_musei(self,e):
         self.museo_selezionato = self._view.dd_Musei.value
-        print(self.museo_selezionato)
-        return self.museo_selezionato
+        return str(self.museo_selezionato)
 
-    def Aggiorna_epoca(self):
+    def Aggiorna_epoca(self,e):
         self.epoca_selezionata = self._view.dd_Epoca.value
-        return self.epoca_selezionata
+        return str(self.epoca_selezionata)
 
     # AZIONE: MOSTRA ARTEFATTI
-    # TODO'''
     def mostra_artefatti(self,e):
+        self._view.risultati.controls.clear()
         museo=self.museo_selezionato
         epoca=self.epoca_selezionata
-        self._model.get_artefatti_filtrati(museo,epoca)
+        risultati=self._model.get_artefatti_filtrati(museo,epoca) # viene restituita una lista di
+        if len(risultati) == 0:
+            self._view.risultati.controls.append(ft.Text("Non sono presenti nei musei artefatti con le caratteristiche richieste"))
+            self._view.update()
+        else:
+            for risultato in risultati:                               # dizionari generati con le interrogazioni
+                self._view.risultati.controls.append(ft.Text(risultato)) #delle query
+            self._view.update()
         return

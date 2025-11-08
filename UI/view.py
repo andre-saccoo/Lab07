@@ -1,7 +1,6 @@
 from tkinter.constants import CENTER
 import flet as ft
 from UI.alert import AlertManager
-#from UI.controller import Controller
 
 '''
     VIEW:
@@ -33,22 +32,22 @@ class View:
         self.page.update()
 
     def load_interface(self):
-        """ Crea e aggiunge gli elementi di UI alla pagina e la aggiorna. """
+        ''' Crea e aggiunge elementi di UI alla pagina e la aggiorna. '''
         # --- Sezione 1: Intestazione ---
         self.txt_titolo = ft.Text(value="Musei di Torino", size=38, weight=ft.FontWeight.BOLD)
 
         # --- Sezione 2: Filtraggio GESIONE DROP DOWN---
-
         '''inserire la lista delle epoche e dei musei, sistemare poi gli attributi on chanhe forse non serve perchè c'è il bottone, cerca di capire dove è la lista dei dati'''
-        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.Popola_drop_down_museo(), on_change=self.controller.Aggiorna_musei, width=200,hint_text="seleziona il museo")
-        self.dd_Epoca = ft.Dropdown(label="Epoca", options=self.controller.Popola_drop_down_epoche(),on_change=self.controller.Aggiorna_epoca, width=200, hint_text="seleziona l'epoca")
+        self.dd_Musei=ft.Dropdown(label="Museo", options=self.controller.Popola_drop_down_museo(), on_change=self.controller.Aggiorna_musei, width=400,hint_text="seleziona il museo")
+        self.dd_Epoca = ft.Dropdown(label="Epoca", options=self.controller.Popola_drop_down_epoche(),on_change=self.controller.Aggiorna_epoca, width=400, hint_text="seleziona l'epoca")
+
         self.row = ft.Row(controls=[self.dd_Musei, self.dd_Epoca], alignment=ft.MainAxisAlignment.CENTER)
 
         # Sezione 3: Artefatti
 
         '''collegare il bottone alla funzione di ricerca'''
         self.button= ft.ElevatedButton (text="Mostra Artefatti",width= 200, on_click= self.controller.mostra_artefatti)
-        self.risultati= ft.ListView
+        self.risultati= ft.ListView(expand=True, spacing=5, padding=10, auto_scroll=True)
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -68,7 +67,7 @@ class View:
 
             # Sezione 3: Artefatti
             self.button,
-            self.risultati(expand=True)
+            self.risultati
         )
 
         self.page.scroll = "adaptive"
