@@ -1,12 +1,10 @@
 import flet as ft
 
+''' Classe che si occupa dei messaggi di errore'''
 class AlertManager:
     def __init__(self, page: ft.Page):
         self._page = page
-        self._alert_dialog = ft.AlertDialog(
-            title=ft.Text(""),
-            actions=[ft.TextButton("OK", on_click=self.close)]
-        )
+        self._alert_dialog = ft.AlertDialog( title=ft.Text(""),actions=[ft.TextButton("OK", on_click=self.close)])
 
     def show_alert(self, message: str):
         self._alert_dialog.title.value = message

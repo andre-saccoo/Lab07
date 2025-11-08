@@ -3,6 +3,7 @@ from model.Model import Model
 from UI.view import View
 from UI.controller import Controller
 
+'''main si occupa del lancio del programma'''
 def main(page: ft.Page):
     my_model = Model()
     my_view = View(page)
