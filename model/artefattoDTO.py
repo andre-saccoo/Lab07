@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
 '''
-    DTO (Data Transfer Object) dell'entità Artefatto, è una dataclass, si specifica cosa si vuole ottenere e viene implementata in automatico
-    nel pattern dao servono a trasferire le informazioni per il codice, dopo averle lette da database
+    DTO (Data Transfer Object) dell'entità Artefatto, è una dataclass, si specifica cosa si vuole ottenere e viene implementata 
+    in automatico nel pattern dao servono a trasferire le informazioni per il codice, dopo averle lette da database
 '''
 
 @dataclass()

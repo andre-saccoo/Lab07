@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 
 '''
-    DTO (Data Transfer Object) dell'entità Museo
-    dataclass per creare in automatico l'oggetto museo
+    DTO (Data Transfer Object) dell'entità Museo dataclass per creare in automatico l'oggetto museo
     è una dataclass, si specifica cosa si vuole ottenere e viene implementata in automatico
     nel pattern dao servono a trasferire le informazioni per il codice, dopo averle lette da database
 '''
